@@ -21,7 +21,7 @@ class PDF(models.Model):
     class Meta:
         ordering = ["-created_at"]
     
-    def __str___(self):
+    def __str__(self):
         return f"{self.file}-{self.user.username}"
     
 class Chat(models.Model):
