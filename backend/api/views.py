@@ -140,15 +140,14 @@ class PDFViewSet(viewsets.ModelViewSet):
         return response 
 
     def build_context(self) -> str:
-        context = ""
+        conversation_chain = ""
         for entry in self.conversation_history:
-            context += f"Q:{entry['question']} \n"
+            conversation_chain += f"Q:{entry['question']} \n"
             if 'response' in entry:
-                context += f"A: {entry['response']} \n"
-            print(context)
-        return context
+                conversation_chain += f"A: {entry['response']} \n"
+        return conversation_chain
 
-    def get_conversational_chain(self, context:str) -> Any:
+    def get_conversational_chain(self, conversation_chain:str) -> Any:
         """
         Sets up a conversational chain with LangChain to generate responses based on PDF content.
         """
@@ -175,7 +174,7 @@ class PDFViewSet(viewsets.ModelViewSet):
         For questions that are directly tied to the context but lack the necessary information in the context, respond with "The answer is not available in the context."
         
         Context:
-        {{context}}\n\n{context}
+        {{context}}\n\n{conversation_chain}
         Question:
         {{question}}
         Answer:
