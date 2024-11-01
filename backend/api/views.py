@@ -133,13 +133,19 @@ class PDFViewSet(viewsets.ModelViewSet):
         return Response({"response": response["output_text"]}, status=status.HTTP_200_OK)
     
     def get_response(self , docs , question):
-        context = self.build_context()
+        """
+        Returns the API response for the provided context
+        """
+        context = self.build_prev_context()
         chain = self.get_conversational_chain(context)
 
         response : Dict[str, Any] = chain({"input_documents":docs, "question":question} , return_only_outputs=True)
         return response 
 
-    def build_context(self) -> str:
+    def build_prev_context(self) -> str:
+        """
+        Checks the conversation_history for question and response if present , provides a context
+        """
         conversation_chain = ""
         for entry in self.conversation_history:
             conversation_chain += f"Q:{entry['question']} \n"
