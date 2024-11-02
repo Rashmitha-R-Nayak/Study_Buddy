@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 
 export default function DropZone() {
   return (
-    <form className="flex items-center justify-center w-[900px] h-[225px] sm:p-4">
+    <form className="flex items-center justify-center w-[900px] h-[225px] sm:p-4 z-10">
       <Label
         htmlFor="dropzone-file"
         className="flex flex-col items-center justify-center w-full h-full transition duration-500 ease-in-out hover:scale-105   rounded-2xl cursor-pointer  bg-gray-800"
