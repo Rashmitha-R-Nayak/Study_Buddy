@@ -1,0 +1,52 @@
+.heroBackground {
+  position: relative;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 153, 255, 0.1),
+    rgba(0, 0, 0, 0.9)
+  );
+  padding: 50px 0;
+  overflow: hidden;
+}
+
+.wavePattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: url("/path/to/wave-pattern.svg") repeat-x;
+  opacity: 0.1;
+  animation: waveAnimation 10s linear infinite;
+}
+
+@keyframes waveAnimation {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1000px;
+  }
+}
+
+.geometricShape {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: floating 5s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+}
