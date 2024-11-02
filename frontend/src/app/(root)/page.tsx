@@ -1,3 +1,9 @@
+import Hero from "./_components/hero/Hero";
+
 export default function Home() {
-  return <h1 className="text-white">Study Buddy</h1>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }

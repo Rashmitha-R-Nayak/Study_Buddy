@@ -7,6 +7,7 @@ import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,19 +66,28 @@ export default function Navbar() {
           </div>
         </div>
         <div className="navbar-center">
-          <Link
-            href="/"
-            className="btn btn-ghost text-[16px] md:text-xl text-white"
-          >
-            <Image
-              className={styles.logo}
-              src="/logo.svg"
-              alt="logo"
-              width={37}
-              height={37}
-            />
+          <Link href="/">
+            <div className={styles.logoContainer}>
+              <span
+                className={`${styles.textBuddy} font-bold text-[16px] md:text-2xl text-blue-100`}
+              >
+                Study
+              </span>
 
-            <span>Study Buddy</span>
+              <Image
+                className={styles.logo}
+                src="/logo.svg"
+                alt="logo"
+                width={37}
+                height={37}
+              />
+
+              <span
+                className={` ${styles.textBuddy} font-bold text-[16px] md:text-2xl text-blue-100`}
+              >
+                Buddy
+              </span>
+            </div>
           </Link>
         </div>
         <div className="navbar-end">

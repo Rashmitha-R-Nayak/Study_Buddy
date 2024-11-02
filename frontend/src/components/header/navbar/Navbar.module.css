@@ -11,3 +11,33 @@
     width: auto;
   }
 }
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logo {
+  margin: 0 10px; /* Adjust spacing around the logo */
+}
+
+.textStudy,
+.textBuddy {
+  opacity: 0; /* Start hidden */
+  transform: translateY(10px); /* Move slightly down */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transition for smoothness */
+}
+
+/* Create a delay for the text elements */
+.logoContainer:hover .textStudy {
+  opacity: 1; /* Fade in */
+  transform: translateY(0); /* Move to original position */
+  transition-delay: 0.2s; /* Delay for the Study text */
+}
+
+.logoContainer:hover .textBuddy {
+  opacity: 1; /* Fade in */
+  transform: translateY(0); /* Move to original position */
+  transition-delay: 0.4s; /* Delay for the Buddy text */
+}
