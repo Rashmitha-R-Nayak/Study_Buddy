@@ -13,10 +13,12 @@ export default function Heading({
   className,
 }: HeadingProps) {
   const [displayedText, setDisplayedText] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const typingSpeed = 120;
 
   useEffect(() => {
+    const textToType = lineTwoText || "";
     const typeText = (text: string, index: number) => {
       if (index < text.length) {
         setDisplayedText((prev) => prev + text.charAt(index));
@@ -25,11 +27,7 @@ export default function Heading({
         setIsTypingComplete(true);
       }
     };
-
-    if (!lineTwoText) {
-      lineTwoText = "";
-    }
-    typeText(lineTwoText, 0);
+    typeText(textToType, 0);
   }, [lineTwoText]);
 
   return (
@@ -38,8 +36,8 @@ export default function Heading({
                from-zinc-300 via-blue-500 to-blue-600 
               bg-clip-text text-transparent ${className}`}
     >
-      <p>{lineOneText}</p>
-      <span className="text-7xl">{displayedText}</span>
+      <p className="text-xl sm:text-6xl">{lineOneText}</p>
+      <span className="md:text-7xl text-2xl">{displayedText}</span>
       {!isTypingComplete && <span className={`${styles.typingCursor}`}></span>}
     </h1>
   );
