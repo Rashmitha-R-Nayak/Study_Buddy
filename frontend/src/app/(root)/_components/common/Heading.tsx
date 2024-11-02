@@ -35,11 +35,11 @@ export default function Heading({
   return (
     <h1
       className={`scroll-m-20  text-center bg-gradient-to-r
-               from-zinc-200 via-blue-500 to-blue-600 
+               from-zinc-300 via-blue-500 to-blue-600 
               bg-clip-text text-transparent ${className}`}
     >
-      <p className={`text-7xl }`}>{lineOneText}</p>
-      {displayedText}
+      <p>{lineOneText}</p>
+      <span className="text-7xl">{displayedText}</span>
       {!isTypingComplete && <span className={`${styles.typingCursor}`}></span>}
     </h1>
   );
