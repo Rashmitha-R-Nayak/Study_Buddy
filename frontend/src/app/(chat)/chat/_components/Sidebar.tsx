@@ -22,7 +22,7 @@ export default function Sidebar() {
   return (
     <div className="flex z-40">
       <div
-        className={`fixed top-0 left-0 h-screen bg-zinc-800 text-white w-80 transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-screen bg-black text-white w-80 transition-transform duration-300 ease-in-out ${
           isOpen ? "transform translate-x-0" : "transform -translate-x-full"
         }`}
       >
