@@ -4,6 +4,7 @@ import NavButton from "./NavButton";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Navbar.module.css";
+import { MdAccountCircle } from "react-icons/md";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -91,7 +92,9 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="navbar-end">
-          <NavButton text="Login" />
+          <Link href="/login">
+            <MdAccountCircle style={{ color: "white", fontSize: "35px" }} />
+          </Link>
         </div>
       </div>
       <div className="pb-16"></div>
