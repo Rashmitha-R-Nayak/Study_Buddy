@@ -1,19 +1,28 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { MdAccountCircle } from "react-icons/md";
+import Link from "next/link";
 
-type NavButtonProps = {
-  text: string;
-};
-
-export default function NavButton({ text }: NavButtonProps) {
+export default function NavButton() {
   return (
-    <Button
-      variant="outline"
-      className="bg-inherit rounded-lg px-3 py-3 md:px-4 md:py-4 transition duration-300 ease-in-out translate-x-0 text-transparent hover:scale-105  hover:border-zinc-700"
-    >
-      <span className="flex items-center justify-center  text-[14px] md:text-[16px] font-bold text-white hover:bg-zinx-100 hover:text-zinc-700">
-        {text}
-      </span>
-    </Button>
+    <div className="dropdown dropdown-end">
+      <div
+        tabIndex={0}
+        role="button"
+        className="btn btn-ghost btn-circle text-white"
+      >
+        <MdAccountCircle style={{ color: "white", fontSize: "35px" }} />
+      </div>
+      <ul
+        tabIndex={0}
+        className="menu menu-sm dropdown-content text-white bg-zinc-900 rounded-box z-[1] mt-3 w-32 p-2 shadow"
+      >
+        <li>
+          <Link href="/">Username</Link>
+        </li>
+        <li>
+          <Link href="/chat">Logout</Link>
+        </li>
+      </ul>
+    </div>
   );
 }
