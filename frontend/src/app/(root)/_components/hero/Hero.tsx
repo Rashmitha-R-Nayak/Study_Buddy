@@ -4,6 +4,7 @@ import SubHeading from "../common/SubHeading";
 import DropZone from "./Dropzone";
 import styles from "./Hero.module.css";
 import CallToAction from "./CallToAction";
+import { SECOND_LINE_OPTIONS } from "@/app/constants/Constant";
 
 export default function Hero() {
   return (
@@ -16,12 +17,12 @@ export default function Hero() {
       <div className={styles.boxShape}></div>
 
       <Heading
-        className="font-extrabold  leading-6 p-2 md:p-6"
-        lineOneText="Revolutionize Your Study"
-        lineTwoText="Routine With Study Buddy"
+        className="font-extrabold  sm:leading-6 p-2 md:p-6"
+        lineOneText="Reimagine Your Study"
+        lineTwoText={SECOND_LINE_OPTIONS}
       />
       <SubHeading
-        className="scroll-m-20 mx-auto leading-10 font-[500] max-w-3xl text-center text-[16px] sm:text-2xl text-zinc-500"
+        className="scroll-m-20 mx-auto sm:leading-10 font-[500] max-w-3xl text-center text-[16px] sm:text-2xl text-zinc-500"
         lineOneText="Effortlessly interact with your PDFs, notes, resumes, and more."
         lineTwoText="Enhancing your learning experience and productivity like never before"
       />
