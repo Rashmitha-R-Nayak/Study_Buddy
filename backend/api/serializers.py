@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.permissions import IsAuthenticated
 from .models import PDF , Chat
 
 class PDFSerializer(serializers.ModelSerializer):
@@ -10,6 +11,7 @@ class PDFSerializer(serializers.ModelSerializer):
         model = PDF
         #Fields to include in JSON
         fields = ["id", "user", "file", "text", "created_at"]
+        permission_classes = [IsAuthenticated]
 
 class ChatSerializer(serializers.ModelSerializer):
     """
@@ -21,4 +23,5 @@ class ChatSerializer(serializers.ModelSerializer):
         model = Chat
         #Fields to Include in JSON
         fields = ["id", "pdf", "question" , "response" , "created_at"]
+        permission_classes = [IsAuthenticated]
 
