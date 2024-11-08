@@ -5,7 +5,7 @@ import google.generativeai as genai
 from rest_framework import viewsets, status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .models import PDF , Chat
-from .serializers import PDFSerializer
+from .serializers import PDFSerializer, UserRegistrationSerializer
 from  PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings , ChatGoogleGenerativeAI
@@ -14,6 +14,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from langchain.prompts import PromptTemplate
 from langchain.chains.question_answering import load_qa_chain
+from django.contrib.auth.models import User
+from rest_framework.permissions import AllowAny
 #To ensure typesafety
 from typing import List , Optional , Dict , Any
 
@@ -190,3 +192,15 @@ class PDFViewSet(viewsets.ModelViewSet):
         chain = load_qa_chain(llm=model, chain_type="stuff", prompt=prompt)
         return chain
 
+
+class UserRegistrationViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({"message": "User registered successfully."}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

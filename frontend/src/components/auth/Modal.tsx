@@ -9,6 +9,7 @@ export default function Modal({ id }: ModalProps) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    console.log(API_URL);
     const form = event.currentTarget;
     const formData = new FormData(form);
     const username = formData.get("username");
@@ -58,23 +59,23 @@ export default function Modal({ id }: ModalProps) {
           </button>
 
           {id === "login_modal" ? (
-            <form method="dialog">
+            <div>
               <Form
                 callHandleSubmit={handleSubmit}
                 formName="Login"
                 currentModalId={id}
                 otherModalId="register_modal"
               />
-            </form>
+            </div>
           ) : (
-            <form method="dialog">
+            <div>
               <Form
                 callHandleSubmit={handleSubmit}
                 formName="Register"
                 currentModalId={id}
                 otherModalId="login_modal"
               />
-            </form>
+            </div>
           )}
         </div>
       </dialog>

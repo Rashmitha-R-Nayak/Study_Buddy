@@ -34,7 +34,7 @@ export default function FormModal({
         {formName}
       </h1>
       <div className="md:mx-2 mx-1">
-        <section onSubmit={callHandleSubmit}>
+        <form onSubmit={callHandleSubmit}>
           <div className="md:mb-4 mb-2">
             <label className="font-bold block text-gray-300">Username</label>
             <input
@@ -81,7 +81,7 @@ export default function FormModal({
               <p className="text-sm text-error mt-2">{errorText}</p>
             )} */}
           </div>
-        </section>
+        </form>
         {formName === "Login" ? (
           <div className="w-full flex justify-around">
             <div className="font-bold badge rounded-lg badge-lg bg-slate-500 text-sm  text-gray-200 hover:text-blue-400">
