@@ -1,10 +1,11 @@
+"use client";
 import React, { FormEvent } from "react";
 
 type FormProps = {
   formName: string;
+  callHandleSubmit: (event: FormEvent<HTMLFormElement>) => void;
   currentModalId: string;
   otherModalId: string;
-  callHandleSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
 
 export default function FormModal({
@@ -20,10 +21,11 @@ export default function FormModal({
     const otherModal = document.getElementById(
       otherModalId
     ) as HTMLDialogElement | null;
+    console.log(currentModal);
+    console.log(otherModal);
     if (currentModal) {
       currentModal.close();
     }
-
     if (otherModal) {
       otherModal.showModal();
     }
@@ -35,13 +37,25 @@ export default function FormModal({
       </h1>
       <div className="md:mx-2 mx-1">
         <form onSubmit={callHandleSubmit}>
+          {formName === "Register" && (
+            <div className="mb-4">
+              <label className="block font-bold text-gray-300">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="your_email@gmail.com"
+                className="bg-stone-400  font-bold text-md text-zinc-700 w-full p-2 placeholder:text-gray-500  placeholder:font-normal border border-gray-300 rounded-lg mt-1 transition transform hover:scale-105 duration-300 ease-in-out"
+                required
+              />
+            </div>
+          )}
           <div className="md:mb-4 mb-2">
             <label className="font-bold block text-gray-300">Username</label>
             <input
               name="username"
               type="text"
               placeholder="username"
-              className="bg-stone-400 font-bold text-md text-stone-700 w-full p-2 placeholder:text-gray-500 placeholder:font-normal border border-gray-300 rounded-lg mt-1 transition transform hover:scale-105 duration-300 ease-in-out"
+              className="bg-stone-400 font-bold text-md text-zinc-700 w-full p-2 placeholder:text-gray-500 placeholder:font-normal border border-gray-300 rounded-lg mt-1 transition transform hover:scale-105 duration-300 ease-in-out"
               required
             />
           </div>
@@ -56,18 +70,20 @@ export default function FormModal({
             />
           </div>
           {formName === "Register" && (
-            <div className="mb-4">
-              <label className="block font-bold text-gray-300">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="********"
-                className="bg-stone-400  font-bold text-md text-stone-700 w-full p-2 placeholder:text-gray-500 border border-gray-300 rounded-lg mt-1 transition transform hover:scale-105 duration-300 ease-in-out"
-                required
-              />
-            </div>
+            <>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-300">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="********"
+                  className="bg-stone-400  font-bold text-md text-zinc-700 w-full p-2 placeholder:text-gray-500 border border-gray-300 rounded-lg mt-1 transition transform hover:scale-105 duration-300 ease-in-out"
+                  required
+                />
+              </div>
+            </>
           )}
 
           <div className="md:mb-6 mb-4 mt-8">
@@ -92,7 +108,7 @@ export default function FormModal({
           </div>
         ) : (
           <div className="w-full flex justify-around">
-            <div className="font-bold badge rounded-lg badge-lg bg-slate-500 text-sm  text-gray-200 hover:text-amber-300">
+            <div className="font-bold badge rounded-lg badge-lg bg-slate-500 text-sm  text-gray-200 hover:text-blue-400">
               <p onClick={handleModalSwitch} className="mx-1">
                 Already Registered ?
               </p>

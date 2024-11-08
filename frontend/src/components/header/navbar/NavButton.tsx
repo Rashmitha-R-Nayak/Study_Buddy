@@ -2,6 +2,7 @@ import React from "react";
 import { MdAccountCircle } from "react-icons/md";
 import Link from "next/link";
 import Modal from "@/components/auth/Modal";
+import { useState } from "react";
 
 export default function NavButton() {
   return (
@@ -18,7 +19,16 @@ export default function NavButton() {
         className="menu menu-sm dropdown-content text-white bg-zinc-900 rounded-box z-[1] mt-3 w-32 p-2 shadow"
       >
         <li>
-          <Link href="/">Hello</Link>
+          <p
+            onClick={() => {
+              const element = document.getElementById(
+                "register_modal"
+              ) as HTMLDialogElement | null;
+              element?.showModal();
+            }}
+          >
+            Register
+          </p>
         </li>
         <li>
           <p
@@ -32,8 +42,9 @@ export default function NavButton() {
             Login
           </p>
         </li>
-        <Modal id="login_modal" />
       </ul>
+      <Modal id="login_modal" />
+      <Modal id="register_modal" />
     </div>
   );
 }
