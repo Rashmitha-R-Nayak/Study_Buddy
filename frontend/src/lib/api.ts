@@ -1,4 +1,3 @@
-// lib/fetchWithAuth.ts
 import { tokenService } from "./tokenService";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -16,25 +15,40 @@ export const fetchWithAuth = async (
   };
 
   const config = { ...options, headers };
-  let response = await fetch(`${API_URL}${endpoint}`, config);
 
-  if (response.status === 401) {
-    const newAccessToken = await tokenService.refreshAccessToken();
+  try {
+    let response = await fetch(`${API_URL}${endpoint}`, config);
 
-    if (newAccessToken) {
-      const retryHeaders = {
-        ...config.headers,
-        Authorization: `Bearer ${newAccessToken}`,
-      };
-      response = await fetch(`${API_URL}${endpoint}`, {
-        ...config,
-        headers: retryHeaders,
-      });
-    } else {
-      tokenService.clearTokens();
-      console.error("Unauthorized. Redirect to login or handle accordingly.");
+    // Handle 401 Unauthorized
+    if (response.status === 401) {
+      const newAccessToken = await tokenService.refreshAccessToken();
+
+      if (newAccessToken) {
+        const retryHeaders = {
+          ...config.headers,
+          Authorization: `Bearer ${newAccessToken}`,
+        };
+        response = await fetch(`${API_URL}${endpoint}`, {
+          ...config,
+          headers: retryHeaders,
+        });
+      } else {
+        tokenService.clearTokens();
+        console.error(
+          "Unauthorized. Redirecting to login or handle accordingly."
+        );
+      }
     }
-  }
 
-  return response;
+    if (!response.ok) {
+      console.error(
+        `Request failed with status ${response.status}: ${response.statusText}`
+      );
+    }
+
+    return response;
+  } catch (error) {
+    console.error("Network error:", error);
+    throw error;
+  }
 };

@@ -32,7 +32,6 @@ export default function Modal({ id }: ModalProps) {
           throw new Error("Error login");
         }
         const data = await response.json();
-        console.log(data);
         const access_token = data.access;
         const refresh_token = data.refresh;
         localStorage.setItem("ACCESS_TOKEN_KEY", access_token);

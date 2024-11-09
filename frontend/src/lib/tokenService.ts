@@ -1,22 +1,18 @@
+"use client";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-const ACCESS_TOKEN_KEY = "access_token";
-const REFRESH_TOKEN_KEY = "refresh_token";
-
 export const tokenService = {
-  // Store tokens in localStorage
   setTokens: (accessToken: string, refreshToken: string) => {
-    localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-    localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    localStorage.setItem("ACCESS_TOKEN_KEY", accessToken);
+    localStorage.setItem("REFRESH_TOKEN_KEY", refreshToken);
   },
 
-  getAccessToken: () => localStorage.getItem(ACCESS_TOKEN_KEY),
-  getRefreshToken: () => localStorage.getItem(REFRESH_TOKEN_KEY),
+  getAccessToken: () => localStorage.getItem("ACCESS_TOKEN_KEY"),
+  getRefreshToken: () => localStorage.getItem("REFRESH_TOKEN_KEY"),
 
-  //on logout
   clearTokens: () => {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
-    localStorage.removeItem(REFRESH_TOKEN_KEY);
+    localStorage.removeItem("ACCESS_TOKEN_KEY");
+    localStorage.removeItem("REFRESH_TOKEN_KEY");
   },
 
   // Refresh access token using refresh token
@@ -34,15 +30,21 @@ export const tokenService = {
           refresh: refreshToken,
         }),
       });
+
       if (!response.ok) {
-        throw new Error("Failed to refresh access token");
+        throw new Error(
+          `Failed to refresh access token. Status: ${response.status}`
+        );
       }
+
       const data = await response.json();
       const newAccessToken = data.access;
 
       if (newAccessToken) {
-        localStorage.setItem(ACCESS_TOKEN_KEY, newAccessToken);
+        tokenService.setTokens(newAccessToken, refreshToken);
         return newAccessToken;
+      } else {
+        throw new Error("No new access token returned");
       }
     } catch (error) {
       console.error("Failed to refresh access token:", error);

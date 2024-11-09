@@ -1,6 +1,6 @@
 from django.urls import path , include
 from rest_framework.routers import DefaultRouter
-from .views import PDFViewSet ,UserRegistrationViewSet
+from .views import PDFViewSet ,UserRegistrationViewSet , check_login_status
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -14,6 +14,7 @@ urlpatterns = [
     # This results in URLs like /pdfs/, /pdfs/<id>/, etc., which are mapped to actions in PDFViewSet
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/check-login/', check_login_status , name="check-login" ),
     path("" , include(router.urls))
 ]
 

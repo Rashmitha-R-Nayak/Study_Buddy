@@ -10,12 +10,12 @@ from  PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings , ChatGoogleGenerativeAI
 from langchain_community.vectorstores import FAISS
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view , permission_classes
 from rest_framework.response import Response
 from langchain.prompts import PromptTemplate
 from langchain.chains.question_answering import load_qa_chain
 from django.contrib.auth.models import User
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny , IsAuthenticated
 #To ensure typesafety
 from typing import List , Optional , Dict , Any
 
@@ -34,6 +34,11 @@ FAISS_FOLDER_PATH = "faiss_indices"
 
 if not os.path.exists(FAISS_FOLDER_PATH):
     os.makedirs(FAISS_FOLDER_PATH)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def check_login_status(request):
+    return Response({"login_status": "logged_in", "user": request.user.username})
 
 
 class PDFViewSet(viewsets.ModelViewSet):
