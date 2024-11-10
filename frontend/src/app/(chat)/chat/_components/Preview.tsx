@@ -22,7 +22,7 @@ export default function Preview({ id }: PDFViewerProps) {
         const data = await res.json();
         setUrl(data.file);
       } catch (error) {
-        console.error("Error fetching PDF:", error);
+        console.log("Error fetching PDF:", error);
       }
     };
 

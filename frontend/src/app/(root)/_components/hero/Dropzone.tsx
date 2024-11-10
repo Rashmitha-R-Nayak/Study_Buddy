@@ -41,6 +41,7 @@ export default function DropZone() {
       setIsLoading(false);
     } catch (error) {
       console.log("Error occured while uploading the file");
+      setIsLoading(false);
     }
   }
 

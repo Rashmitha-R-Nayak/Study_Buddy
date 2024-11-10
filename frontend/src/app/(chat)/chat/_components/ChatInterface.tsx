@@ -4,7 +4,6 @@ import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 import { fetchWithAuth } from "@/lib/api";
 import { LoadingDots } from "@/components/loading_indicators/Loading";
-import { Suspense } from "react";
 
 interface ChatHistoryItem {
   question: string;
@@ -81,7 +80,7 @@ export default function ChatInterface({ id }: { id: string }) {
         }));
         setHistory(formattedHistory);
       } catch (error) {
-        console.error("Error fetching chat history", error);
+        console.log("Error fetching chat history");
       }
     };
 
@@ -126,7 +125,7 @@ export default function ChatInterface({ id }: { id: string }) {
 
       setIsLoading(false);
     } catch (error) {
-      console.error("Failed to submit question", error);
+      console.log("Failed to submit question");
       setIsLoading(false);
     }
   };
@@ -178,7 +177,9 @@ export default function ChatInterface({ id }: { id: string }) {
             isLoading ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={isLoading}
-        ></button>
+        >
+          {isLoading ? "Sending..." : "Send"}
+        </button>
       </form>
     </div>
   );

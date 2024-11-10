@@ -52,16 +52,31 @@ export default function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content text-white  bg-zinc-900 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content text-white bg-zinc-800 rounded-lg shadow-lg z-[1] mt-3 w-52 p-3  transform transition-all duration-300 ease-in-out hover:scale-105"
             >
-              <li>
-                <Link href="/">Home</Link>
+              <li className="hover:bg-zinc-700 rounded-lg p-1 transition duration-200">
+                <Link
+                  href="/"
+                  className="block px-2  text-base font-semibold hover:text-blue-500"
+                >
+                  Home
+                </Link>
               </li>
-              <li>
-                <Link href="/chat">Study Buddy</Link>
+              <li className="hover:bg-zinc-700 rounded-lg p-1 transition duration-200">
+                <Link
+                  href="/chat"
+                  className="block px-2  text-base font-semibold hover:text-blue-500"
+                >
+                  Study Buddy
+                </Link>
               </li>
-              <li>
-                <Link href="/about">About</Link>
+              <li className="hover:bg-zinc-700 rounded-lg p-1 transition duration-200">
+                <Link
+                  href="/about"
+                  className="block px-2  text-base font-semibold hover:text-blue-500"
+                >
+                  About
+                </Link>
               </li>
             </ul>
           </div>
@@ -75,13 +90,7 @@ export default function Navbar() {
                 Study
               </span>
 
-              <Image
-                className={styles.logo}
-                src="/logo.svg"
-                alt="logo"
-                width={37}
-                height={37}
-              />
+              <img className={styles.logo} src="/logo.svg" alt="logo" />
 
               <span
                 className={` ${styles.textBuddy} font-bold text-[16px] md:text-2xl text-blue-100`}

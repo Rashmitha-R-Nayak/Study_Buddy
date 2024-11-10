@@ -29,7 +29,7 @@ export default function Sidebar() {
       });
       setPdfs(pdfs);
     } catch (error) {
-      console.error("Failed to fetch PDFs:");
+      console.log("Failed to fetch PDFs:");
       return [];
     }
   };
@@ -63,7 +63,7 @@ export default function Sidebar() {
           <IoIosArrowBack />
         </button>
         <div className="p-4 h-full flex flex-col">
-          <h2 className="text-2xl font-bold mb-4 pt-16 py-8">Study Buddy</h2>
+          <h2 className="text-2xl font-bold mb-4 pt-16 py-2">Study Buddy</h2>
           <DropZoneInput onUploadSuccess={handleFileUploadSuccess} />
           <div className="overflow-y-auto flex-1 mt-6 border-t border-gray-700">
             <ul className="space-y-4 mt-4">

@@ -43,7 +43,7 @@ export function DropZoneInput({
       onUploadSuccess();
       setFileName("");
     } catch (error) {
-      console.error("Error occurred while uploading the file:", error);
+      console.log("Error occurred while uploading the file:");
     } finally {
       setIsLoading(false);
     }

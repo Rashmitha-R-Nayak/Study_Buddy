@@ -8,6 +8,17 @@ export const fetchWithAuth = async (
 ): Promise<Response> => {
   const accessToken = tokenService.getAccessToken();
 
+  if (!accessToken) {
+    const loginElement = document.getElementById(
+      "login_modal"
+    ) as HTMLDialogElement | null;
+
+    if (loginElement) {
+      loginElement.showModal();
+    }
+    throw new Error("User not authenticated. Login required.");
+  }
+
   const isFormData = options.body instanceof FormData;
   const headers = {
     ...(options.headers || {}),

@@ -1,7 +1,6 @@
 .logo {
-  max-width: 37px;
-  height: auto;
-  width: auto;
+  height: 37px;
+  width: 37px;
 }
 
 @media (max-width: 768px) {

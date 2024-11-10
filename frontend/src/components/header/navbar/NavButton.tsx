@@ -25,11 +25,11 @@ export default function NavButton() {
         {user ? (
           <>
             <li className="py-2 px-4 border-b border-zinc-700">
-              <p className=" text-[16px] font-medium">{user}</p>
+              <p className=" text-[16px] p-1 font-medium">{user}</p>
             </li>
             <li className="py-2 px-4">
               <p
-                className="cursor-pointer  text-[16px] font-medium flex items-center text-red-500 hover:text-white"
+                className="cursor-pointer  text-[16px]  p-1 font-medium flex items-center text-red-500 hover:text-white"
                 onClick={() => {
                   tokenService.clearTokens();
                   window.location.reload();
@@ -43,7 +43,7 @@ export default function NavButton() {
           <>
             <li className="py-2 px-4">
               <p
-                className="cursor-pointer  text-[16px] font-medium text-blue-500 hover:text-white"
+                className="cursor-pointer  text-[16px] p-1 font-medium text-blue-500 hover:text-white"
                 onClick={() => {
                   const element = document.getElementById(
                     "register_modal"
@@ -56,7 +56,7 @@ export default function NavButton() {
             </li>
             <li className="py-2 px-4">
               <p
-                className="cursor-pointer  text-[16px] font-medium text-blue-500 flex items-center hover:text-white"
+                className="cursor-pointer  text-[16px] p-1 font-medium text-blue-500 flex items-center hover:text-white"
                 onClick={() => {
                   const element = document.getElementById(
                     "login_modal"
