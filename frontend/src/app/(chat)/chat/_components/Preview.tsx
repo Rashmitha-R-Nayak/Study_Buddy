@@ -1,14 +1,33 @@
 "use client";
+import { fetchWithAuth } from "@/lib/api";
 import { Worker } from "@react-pdf-viewer/core";
 import { Viewer, SpecialZoomLevel } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
+import { useEffect, useState } from "react";
 
 type PDFViewerProps = {
   id: string;
 };
 
 export default function Preview({ id }: PDFViewerProps) {
-  const url = "http://127.0.0.1:8000/media/pdfs/sample.pdf";
+  const [url, setUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUrl = async () => {
+      try {
+        const res = await fetchWithAuth(`/pdfs/${id}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch pdf");
+        }
+        const data = await res.json();
+        setUrl(data.file);
+      } catch (error) {
+        console.error("Error fetching PDF:", error);
+      }
+    };
+
+    fetchUrl();
+  }, [id]);
 
   return (
     <div className="flex flex-col h-full rounded-lg bg-zinc-900 shadow-lg border border-gray-700 ">

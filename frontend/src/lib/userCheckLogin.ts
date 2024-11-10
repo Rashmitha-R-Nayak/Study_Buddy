@@ -24,7 +24,7 @@ export const useCheckLogin = () => {
           setUserId(data.user_id);
         }
       } catch (error) {
-        console.error("Error during login check:", error);
+        console.error("Login");
       }
     }
     checkLogin();

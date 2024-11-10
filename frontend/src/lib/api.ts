@@ -39,11 +39,11 @@ export const fetchWithAuth = async (
       }
     }
 
-    if (!response.ok) {
-      console.error(
-        `Request failed with status ${response.status}: ${response.statusText}`
-      );
-    }
+    // if (!response.ok) {
+    //   console.error(
+    //     `Request failed with status ${response.status}: ${response.statusText}`
+    //   );
+    // }
 
     return response;
   } catch (error) {
