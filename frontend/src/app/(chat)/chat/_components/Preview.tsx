@@ -32,7 +32,7 @@ export default function Preview({ id }: PDFViewerProps) {
   return (
     <div className="flex flex-col h-full rounded-lg bg-zinc-900 shadow-lg border border-gray-700 ">
       <div className="text-center text-white text-2xl font-semibold  pt-2 border-b border-gray-800 bg-zinc-800 rounded-t-lg">
-        {url ? "PDF Preview" : "Guide"}
+        Preview
       </div>
 
       <div className="flex-1 bg-zinc-800 p-4 overflow-hidden rounded-b-lg">

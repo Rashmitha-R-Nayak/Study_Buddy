@@ -5,7 +5,7 @@ import google.generativeai as genai
 from rest_framework import viewsets, status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .models import PDF , Chat
-from .serializers import PDFSerializer, UserRegistrationSerializer
+from .serializers import PDFSerializer, UserRegistrationSerializer , ChatSerializer
 from  PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings , ChatGoogleGenerativeAI
@@ -196,6 +196,16 @@ class PDFViewSet(viewsets.ModelViewSet):
         prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
         chain = load_qa_chain(llm=model, chain_type="stuff", prompt=prompt)
         return chain
+    
+    @action(detail=True, methods=['get'], url_path='chats')
+    def get_chat_history(self, request: Any, pk: Optional[int] = None) -> Response:
+        """
+        Fetches chat history for a specific PDF.
+        """
+        pdf_instance: PDF = self.get_object()
+        chats = pdf_instance.chats.all().order_by('created_at')  
+        serializer = ChatSerializer(chats, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserRegistrationViewSet(viewsets.ModelViewSet):

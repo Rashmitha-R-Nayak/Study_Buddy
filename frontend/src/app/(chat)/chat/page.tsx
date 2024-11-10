@@ -12,7 +12,7 @@ export default function ChatDashboard() {
           <Preview id="1" />
         </div>
         <div className="w-1/2 bg-zinc-800 rounded-lg border border-gray-700 p-4 shadow-lg text-white h-full overflow-hidden">
-          <ChatInterface />
+          <ChatInterface id="1" />
         </div>
       </div>
     </div>

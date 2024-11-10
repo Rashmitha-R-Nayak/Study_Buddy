@@ -28,7 +28,6 @@ class ChatSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Chat
-        #Fields to Include in JSON
         fields = ["id", "pdf", "question" , "response" , "created_at"]
         permission_classes = [IsAuthenticated]
 
@@ -53,5 +52,3 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
-    
-    

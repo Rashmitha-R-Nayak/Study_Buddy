@@ -13,7 +13,7 @@ export default async function ChatPage({ params }: { params: { id: string } }) {
           <Preview id={id} />
         </div>
         <div className="w-1/2 bg-zinc-800 rounded-lg border border-gray-700 p-4 shadow-lg text-white h-full overflow-hidden">
-          <ChatInterface />
+          <ChatInterface id={id} />
         </div>
       </div>
     </div>
