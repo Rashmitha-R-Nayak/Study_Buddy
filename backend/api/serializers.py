@@ -14,6 +14,12 @@ class PDFSerializer(serializers.ModelSerializer):
         fields = ["id", "user", "file", "text", "created_at"]
         permission_classes = [IsAuthenticated]
 
+    def to_internal_value(self, data):
+
+        if 'user' in data:
+            data['user'] = int(data['user'])  #convert the user_id from string to int 
+        return super().to_internal_value(data)
+
 class ChatSerializer(serializers.ModelSerializer):
     """
     This serializer converts Chat Model instance to JSON format

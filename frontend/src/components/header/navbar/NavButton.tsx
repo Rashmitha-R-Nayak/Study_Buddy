@@ -7,7 +7,7 @@ import { useCheckLogin } from "@/lib/userCheckLogin";
 import { tokenService } from "@/lib/tokenService";
 
 export default function NavButton() {
-  const user = useCheckLogin();
+  const { user } = useCheckLogin();
   return (
     <div className="dropdown dropdown-end relative">
       <div

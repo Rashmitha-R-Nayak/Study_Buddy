@@ -17,7 +17,7 @@ export const tokenService = {
 
   // Refresh access token using refresh token
   refreshAccessToken: async () => {
-    const refreshToken = tokenService.getRefreshToken();
+    const refreshToken = tokenService.getAccessToken();
     if (!refreshToken) throw new Error("No refresh token available");
 
     try {

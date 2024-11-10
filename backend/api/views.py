@@ -38,7 +38,7 @@ if not os.path.exists(FAISS_FOLDER_PATH):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def check_login_status(request):
-    return Response({"login_status": "logged_in", "user": request.user.username})
+    return Response({"login_status": "logged_in", "user": request.user.username, "user_id":request.user.id})
 
 
 class PDFViewSet(viewsets.ModelViewSet):

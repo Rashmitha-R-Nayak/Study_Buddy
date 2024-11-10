@@ -8,10 +8,11 @@ export const fetchWithAuth = async (
 ): Promise<Response> => {
   const accessToken = tokenService.getAccessToken();
 
+  const isFormData = options.body instanceof FormData;
   const headers = {
-    ...options.headers,
-    "Content-Type": "application/json",
+    ...(options.headers || {}),
     ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+    ...(isFormData ? {} : { "Content-Type": "application/json" }), // to handle formData
   };
 
   const config = { ...options, headers };
@@ -19,13 +20,11 @@ export const fetchWithAuth = async (
   try {
     let response = await fetch(`${API_URL}${endpoint}`, config);
 
-    // Handle 401 Unauthorized
     if (response.status === 401) {
       const newAccessToken = await tokenService.refreshAccessToken();
-
       if (newAccessToken) {
         const retryHeaders = {
-          ...config.headers,
+          ...headers,
           Authorization: `Bearer ${newAccessToken}`,
         };
         response = await fetch(`${API_URL}${endpoint}`, {

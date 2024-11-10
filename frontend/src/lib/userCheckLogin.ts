@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { fetchWithAuth } from "@/lib/api";
 
 export const useCheckLogin = () => {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<String | null>(null);
+  const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
     async function checkLogin() {
@@ -18,7 +19,9 @@ export const useCheckLogin = () => {
         }
         const data = await response.json();
         if (data.login_status === "logged_in") {
+          console.log(data);
           setUser(data.user);
+          setUserId(data.user_id);
         }
       } catch (error) {
         console.error("Error during login check:", error);
@@ -27,5 +30,5 @@ export const useCheckLogin = () => {
     checkLogin();
   }, []);
 
-  return user;
+  return { user, userId };
 };
