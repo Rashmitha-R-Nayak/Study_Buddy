@@ -5,7 +5,7 @@ import { LoadingDots } from "@/components/loading_indicators/Loading";
 import { SUGGESTION_QUESTIONS } from "@/app/constants/Constant";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
-import { formatAnswer, highlightCode } from "@/lib/FormatResponse";
+import { formatAnswer, highlightCode } from "@/lib/formatResponse";
 
 interface ChatHistoryItem {
   question: string;
