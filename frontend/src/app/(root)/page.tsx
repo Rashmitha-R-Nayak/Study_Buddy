@@ -5,7 +5,6 @@ import CarouselSection from "./_components/carousel/CarouselSection";
 export default function Home() {
   return (
     <>
-      <Navbar />
       <Hero />
       <CarouselSection />
     </>
