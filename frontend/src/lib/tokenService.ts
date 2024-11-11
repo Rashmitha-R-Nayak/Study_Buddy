@@ -47,7 +47,7 @@ export const tokenService = {
         throw new Error("No new access token returned");
       }
     } catch (error) {
-      console.error("Failed to refresh access token:", error);
+      console.log("Failed to refresh access token:");
       tokenService.clearTokens();
       throw error;
     }

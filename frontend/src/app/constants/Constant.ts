@@ -20,3 +20,13 @@ export const SECOND_LINE_OPTIONS: string[] = [
   "Navigate Complex Ideas",
   "Learning's Future Starts Here",
 ];
+
+export const SUGGESTION_QUESTIONS = [
+  "What is the summary of this document?",
+  "Can you explain the first section?",
+  "What are the key points of this PDF?",
+  "Please describe the conclusion.",
+  "Could you provide the list of references in this document?",
+  "What is the main topic discussed in this PDF?",
+  "Can you create multiple-choice questions based on the content of this document?", // New MCQ creation suggestion
+];

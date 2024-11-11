@@ -58,7 +58,7 @@ export const fetchWithAuth = async (
 
     return response;
   } catch (error) {
-    console.error("Network error:", error);
+    console.log("Network error");
     throw error;
   }
 };
